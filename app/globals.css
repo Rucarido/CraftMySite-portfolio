@@ -122,7 +122,9 @@
   }
 }
 
-/* Enhanced animated background with dynamic light effects */
+/* Enhanced multi-layer animated wallpaper with sophisticated gradient transitions and floating particles */
+
+/* Base gradient animation */
 @keyframes gradient-shift {
   0% {
     background-position: 0% 50%;
@@ -135,66 +137,105 @@
   }
 }
 
-@keyframes float-orb-1 {
-  0%,
-  100% {
-    transform: translate(0, 0);
-    opacity: 0.15;
+/* Smooth wave-like motion for fluid background */
+@keyframes wave-shift {
+  0% {
+    transform: translateX(0) translateY(0);
   }
   25% {
-    opacity: 0.25;
+    transform: translateX(10px) translateY(-5px);
   }
   50% {
-    transform: translate(50px, -50px);
-    opacity: 0.2;
+    transform: translateX(0) translateY(0);
   }
   75% {
-    opacity: 0.15;
+    transform: translateX(-10px) translateY(5px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
   }
 }
 
-@keyframes float-orb-2 {
+/* Floating particles */
+@keyframes float-particle-1 {
   0%,
   100% {
-    transform: translate(0, 0);
-    opacity: 0.1;
+    transform: translate(0, 0) scale(1);
+    opacity: 0.2;
   }
   25% {
-    transform: translate(-60px, 40px);
+    transform: translate(80px, -60px) scale(0.8);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate(0, -100px) scale(1);
+    opacity: 0.25;
+  }
+  75% {
+    transform: translate(-80px, -60px) scale(0.9);
+    opacity: 0.3;
+  }
+}
+
+@keyframes float-particle-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.15;
+  }
+  33% {
+    transform: translate(-100px, 80px) scale(1.1);
+    opacity: 0.28;
+  }
+  66% {
+    transform: translate(100px, -80px) scale(0.9);
+    opacity: 0.2;
+  }
+}
+
+@keyframes float-particle-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
     opacity: 0.18;
   }
   50% {
-    opacity: 0.12;
-  }
-  75% {
-    transform: translate(40px, -30px);
-    opacity: 0.15;
+    transform: translate(60px, 60px) rotate(180deg);
+    opacity: 0.32;
   }
 }
 
-@keyframes float-orb-3 {
-  0%,
-  100% {
-    transform: translate(0, 0);
-    opacity: 0.12;
-  }
-  33% {
-    transform: translate(-40px, 60px);
-    opacity: 0.22;
-  }
-  66% {
-    transform: translate(60px, -40px);
-    opacity: 0.15;
-  }
-}
-
+/* Grid pulse animation */
 @keyframes grid-pulse {
   0%,
   100% {
-    opacity: 0.08;
+    opacity: 0.05;
   }
   50% {
-    opacity: 0.15;
+    opacity: 0.12;
+  }
+}
+
+/* Light sweep effect */
+@keyframes light-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Subtle color shift */
+@keyframes color-shift {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(15deg);
+  }
+  100% {
+    filter: hue-rotate(0deg);
   }
 }
 
@@ -204,13 +245,14 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #0a0e27 0%, #1a2639 50%, #0f1628 100%);
-  background-size: 200% 200%;
-  animation: gradient-shift 15s ease infinite;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a2f4a 25%, #1a2639 50%, #0f1a2e 75%, #0a0e27 100%);
+  background-size: 300% 300%;
+  animation: gradient-shift 20s ease infinite;
   z-index: 0;
   overflow: hidden;
 }
 
+/* Base layer with grid and radial gradients */
 .animated-bg::before {
   content: "";
   position: absolute;
@@ -218,73 +260,117 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(circle at 20% 50%, rgba(26, 188, 156, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(52, 152, 219, 0.1) 0%, transparent 50%),
+  /* Top-left radial gradient */
+  background-image: radial-gradient(circle at 15% 30%, rgba(26, 188, 156, 0.12) 0%, transparent 50%),
+    /* Center radial gradient */
+    radial-gradient(circle at 50% 50%, rgba(52, 152, 219, 0.08) 0%, transparent 50%), /* Bottom-right radial gradient */
+    radial-gradient(circle at 85% 85%, rgba(243, 156, 18, 0.08) 0%, transparent 50%), /* Horizontal grid lines */
     linear-gradient(
       0deg,
       transparent 24%,
-      rgba(26, 188, 156, 0.03) 25%,
-      rgba(26, 188, 156, 0.03) 26%,
+      rgba(26, 188, 156, 0.04) 25%,
+      rgba(26, 188, 156, 0.04) 26%,
       transparent 27%,
       transparent 74%,
-      rgba(26, 188, 156, 0.03) 75%,
-      rgba(26, 188, 156, 0.03) 76%,
+      rgba(26, 188, 156, 0.04) 75%,
+      rgba(26, 188, 156, 0.04) 76%,
       transparent 77%
-    ),
+    ), /* Vertical grid lines */
     linear-gradient(
       90deg,
       transparent 24%,
-      rgba(26, 188, 156, 0.03) 25%,
-      rgba(26, 188, 156, 0.03) 26%,
+      rgba(26, 188, 156, 0.04) 25%,
+      rgba(26, 188, 156, 0.04) 26%,
       transparent 27%,
       transparent 74%,
-      rgba(26, 188, 156, 0.03) 75%,
-      rgba(26, 188, 156, 0.03) 76%,
+      rgba(26, 188, 156, 0.04) 75%,
+      rgba(26, 188, 156, 0.04) 76%,
       transparent 77%
     );
-  background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
-  animation: grid-pulse 8s ease-in-out infinite;
+  background-size: 100% 100%, 100% 100%, 100% 100%, 60px 60px, 60px 60px;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+  animation: grid-pulse 8s ease-in-out infinite, wave-shift 15s ease-in-out infinite;
   pointer-events: none;
 }
 
+/* Large floating orbs with glow */
 .animated-bg::after {
   content: "";
   position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(26, 188, 156, 0.1) 0%, transparent 70%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(26, 188, 156, 0.12) 0%, rgba(26, 188, 156, 0.04) 30%, transparent 70%);
   border-radius: 50%;
-  top: -100px;
+  top: -200px;
   right: -100px;
-  animation: float-orb-1 20s ease-in-out infinite;
+  animation: float-particle-1 25s ease-in-out infinite;
   pointer-events: none;
+  filter: blur(60px);
 }
 
-/* Floating orb elements */
+/* Primary floating particle */
 .orb-1 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(52, 152, 219, 0.1) 0%, rgba(52, 152, 219, 0.03) 40%, transparent 70%);
+  border-radius: 50%;
+  bottom: -150px;
+  left: 5%;
+  animation: float-particle-2 28s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(50px);
+}
+
+/* Secondary floating particle */
+.orb-2 {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(243, 156, 18, 0.08) 0%, rgba(243, 156, 18, 0.02) 35%, transparent 70%);
+  border-radius: 50%;
+  top: 15%;
+  right: 3%;
+  animation: float-particle-3 32s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(55px);
+}
+
+/* Tertiary accent orb */
+.orb-3 {
   position: absolute;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(52, 152, 219, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(155, 89, 182, 0.06) 0%, transparent 70%);
   border-radius: 50%;
-  bottom: -50px;
-  left: 10%;
-  animation: float-orb-2 25s ease-in-out infinite;
+  top: 50%;
+  left: -100px;
+  animation: float-particle-1 30s ease-in-out infinite reverse;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
+  filter: blur(45px);
 }
 
-.orb-2 {
+/* Light sweep effect overlay */
+.light-sweep {
   position: absolute;
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(243, 156, 18, 0.05) 0%, transparent 70%);
-  border-radius: 50%;
-  top: 20%;
-  right: 5%;
-  animation: float-orb-3 30s ease-in-out infinite;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(26, 188, 156, 0.08) 25%,
+    rgba(52, 152, 219, 0.06) 50%,
+    rgba(26, 188, 156, 0.08) 75%,
+    transparent 100%
+  );
+  animation: light-sweep 8s ease-in-out infinite;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 
 .content-above-bg {
